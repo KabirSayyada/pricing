@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Standard Tier</title>
   <style>
     body {
@@ -32,3 +32,62 @@
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(255, 106, 0, 0.5);
     }
+
+    .card h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 2rem;
+    }
+
+    .button {
+      display: inline-block;
+      background-color: #ffffff;
+      color: #0d0d0d;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      background-color: #ddd;
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 600px) {
+      .card {
+        padding: 2rem;
+      }
+
+      .card h1 {
+        font-size: 2rem;
+      }
+
+      .card p {
+        font-size: 2.2rem;
+      }
+
+      .button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Standard Tier</h1>
+    <p>$12</p>
+    <a href="#" class="button">Continue to Payment</a>
+  </div>
+</body>
+</html>
+
