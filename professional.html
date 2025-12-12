@@ -66,6 +66,8 @@
       cursor: pointer;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.2s ease;
+      /* Add an ID to easily target the button in JavaScript */
+      id: 'dodoPayButton'; 
     }
 
     .button:hover {
@@ -111,7 +113,7 @@
     <h1>Professional Plan Checkout</h1>
     <div class="tagline">You're almost there. Confirm your payment below.</div>
     <div class="payment-info">$28</div>
-    <a href="https://checkout.dodopayments.com/buy/pdt_0ebNV8n8MfI98fxP846cn?quantity=1" class="button" target="_blank" rel="noopener noreferrer">
+    <a href="https://checkout.dodopayments.com/buy/pdt_0ebNV8n8MfI98fxP846cn?quantity=1" class="button" id="dodoPayButton" target="_blank" rel="noopener noreferrer">
       Continue to Payment
     </a>
     <div class="secure-note">
@@ -119,5 +121,34 @@
       <span>Secure Payment</span>
     </div>
   </div>
-</body>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Get the current URL's query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      
+      // 2. Extract the 'email' parameter value
+      const email = urlParams.get('email');
+      
+      // 3. Find the payment button using its new ID
+      const button = document.getElementById('dodoPayButton');
+      
+      if (email && button) {
+        // 4. Get the original DodoPay URL
+        const originalHref = button.href;
+        
+        // 5. Construct the new parameter for DodoPay
+        const emailParam = `&customer_email=${encodeURIComponent(email)}`;
+        
+        // 6. Update the button's link by appending the email parameter
+        // The DodoPay URL already has one '?' so we use '&' to add more params
+        button.href = originalHref + emailParam;
+
+        console.log('DodoPay URL updated to:', button.href);
+      } else {
+        console.warn('Email parameter not found or button not found. Using default DodoPay link.');
+      }
+    });
+  </script>
+  </body>
 </html>
