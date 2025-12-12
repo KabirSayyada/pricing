@@ -66,7 +66,6 @@
       cursor: pointer;
       text-decoration: none;
       transition: background 0.3s ease, transform 0.2s ease;
-      /* Add an ID to easily target the button in JavaScript */
       id: 'dodoPayButton'; 
     }
 
@@ -130,21 +129,21 @@
       // 2. Extract the 'email' parameter value
       const email = urlParams.get('email');
       
-      // 3. Find the payment button using its new ID
+      // 3. Find the payment button using its ID
       const button = document.getElementById('dodoPayButton');
       
       if (email && button) {
         // 4. Get the original DodoPay URL
         const originalHref = button.href;
         
-        // 5. Construct the new parameter for DodoPay
-        const emailParam = `&customer_email=${encodeURIComponent(email)}`;
+        // 5. CONSTRUCT THE NEW PARAMETER: Changed from '&customer_email=' to '&email='
+        const emailParam = `&email=${encodeURIComponent(email)}`; // <--- THE KEY FIX
         
         // 6. Update the button's link by appending the email parameter
-        // The DodoPay URL already has one '?' so we use '&' to add more params
         button.href = originalHref + emailParam;
 
         console.log('DodoPay URL updated to:', button.href);
+        // This console log will now show the URL with the simple '&email=' parameter.
       } else {
         console.warn('Email parameter not found or button not found. Using default DodoPay link.');
       }
